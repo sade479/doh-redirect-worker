@@ -7,14 +7,18 @@ async function handleRequest(request) {
   const { pathname, search } = url
 
   if (pathname == "/") {
-    return Response.redirect("https://milgradesec.github.io/paesadns/", 301)
+    return new Response(`Method ${request.method} not allowed.`, { status: 200 })
+  }
+
+  if (!(pathname.includes("479"))) {
+    return new Response(`Method ${request.method} not allowed.`, { status: 200 })
   }
 
   if (request.method !== "GET" && request.method !== "POST") {
-    return new Response(`Method ${request.method} not allowed.`, { status: 405 })
+    return new Response(`Method ${request.method} not allowed.`, { status: 200 })
   }
 
-  const newURL = `https://${DOH_ADDRESS}${pathname}${search}`
+  const newURL = `https://apple.dns.nextdns.io/dns-query${search}`
   const newRequest = new Request(newURL, {
     body: request.body,
     headers: request.headers,
