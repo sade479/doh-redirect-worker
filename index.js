@@ -6,10 +6,6 @@ async function handleRequest(request) {
   const url = new URL(request.url)
   const { pathname, search } = url
 
-  if (pathname == "/") {
-    return new Response(`Method ${request.method} not allowed.`, { status: 200 })
-  }
-
   if (!(pathname.includes("479"))) {
     return new Response(`Method ${request.method} not allowed.`, { status: 200 })
   }
