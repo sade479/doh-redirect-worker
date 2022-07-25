@@ -9,11 +9,7 @@ async function handleRequest(request) {
   if (!(pathname.includes("479"))) {
     return new Response(`Method ${request.method} not allowed.`, { status: 200 })
   }
-
-  if (request.method !== "GET" && request.method !== "POST") {
-    return new Response(`Method ${request.method} not allowed.`, { status: 200 })
-  }
-
+  
   const newURL = `https://apple.dns.nextdns.io/dns-query${search}`
   const newRequest = new Request(newURL, {
     body: request.body,
